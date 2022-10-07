@@ -26,16 +26,29 @@ void insertNode(node* &head,int val) {
     temp->next = newNode;
     return;
 }
-//utility function to check presence of intersection
+//utility function to check presence of intersection 
 node* intersectionPresent(node* head1,node* head2) {
     node* d1 = head1;
     node* d2 = head2;
     
+
+    // If any one of head is NULL i.e
+    // no Intersection Point
+    if (d1 == NULL || d2 == NULL)
+        return NULL;
+
     while(d1 != d2) {
+
+        /* Once both of them go through reassigning,
+        they will be equidistant from the collision point.*/
+
+        // When ptr1 reaches the end of a list, then
+        // reassign it to the head2.
+        // When ptr2 reaches the end of a list, then
+        // redirect it to the head1.
         d1 = d1 == NULL? head2:d1->next;
         d2 = d2 == NULL? head1:d2->next;
-    }
-    
+    }  
     return d1;
 }
 
