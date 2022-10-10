@@ -52,7 +52,7 @@ int allocateBook(vector < int > & A, int B) {
 int main() {
   vector<int>  arr= {12,34,67,90};  // pages of book
 
-  int k = 2;  // number of students
+  int k = 2;  // number of students 
   
   cout << "Minimum Possible Number is " << allocateBook(arr, k);
   return 0;
