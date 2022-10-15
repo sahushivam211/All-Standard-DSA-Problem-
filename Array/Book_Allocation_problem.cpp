@@ -27,8 +27,7 @@ int isPossible(vector < int > & A, int pages, int students) {
 int allocateBook(vector < int > & A, int B) {
   if (B > A.size()) return -1;
   
-  int low = A[0];
-  
+  int low = A[0];  
   int high = 0;
 
   // Find the minimum value along with sum of all pages
@@ -52,8 +51,7 @@ int allocateBook(vector < int > & A, int B) {
 int main() {
   vector<int>  arr= {12,34,67,90};  // pages of book
 
-  int k = 2;  // number of students
-  
+  int k = 2;  // number of students   
   cout << "Minimum Possible Number is " << allocateBook(arr, k);
   return 0;
 }
