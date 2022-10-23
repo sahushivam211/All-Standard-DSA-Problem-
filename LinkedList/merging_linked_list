@@ -1,0 +1,129 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *next;
+} *first = NULL, *second = NULL, *third = NULL;
+
+void create1(int A[], int n)
+{
+    struct node *last;
+    first = (struct node *)malloc(sizeof(struct node));
+    first->data = A[0];
+    first->next = NULL;
+    last = first;
+
+    for (int i = 1; i < n; i++)
+    {
+        struct node *new = (struct node *)malloc(sizeof(struct node));
+        new->data = A[i];
+        new->next = NULL;
+        last->next = new;
+        last = new;
+    }
+}
+
+void *create2(int A[], int n) // for creating 2nd list. Globally as second
+{
+    struct node *last;
+    second = (struct node *)malloc(sizeof(struct node));
+    second->data = A[0];
+    second->next = NULL;
+    last = second;
+
+    for (int i = 1; i < n; i++)
+    {
+        struct node *new = (struct node *)malloc(sizeof(struct node));
+        new->data = A[i];
+        new->next = NULL;
+        last->next = new;
+        last = new;
+    }
+}
+
+void Display(struct node *p)
+{
+    while (p)
+    {
+        printf("%d ", p->data);
+        p = p->next;
+    }
+    printf("\n");
+}
+
+struct node *concat(struct node *p, struct node *q)
+{
+    third = p;
+    while (p->next)
+    {
+        p = p->next;
+    }
+    p->next = q;
+
+    return third;
+}
+
+void Merge(struct node *p, struct node *q)
+{
+    struct node *last;
+
+    if (p->data < q->data)
+    {
+        third = last = p;
+        p = p->next;
+        third->next = NULL;
+    }
+    else
+    {
+        third = last = q;
+        q = q->next;
+        third->next = NULL;
+    }
+    while (p != NULL && q != NULL)
+    {
+        if (p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+
+    if (p)
+        last->next = p;
+    if (q)
+        last->next = q;
+}
+
+int main()
+{
+    int A[] = {10, 20, 30, 40, 50};
+    create1(A, 5);
+    Display(first);
+
+    int B[] = {5, 15, 25, 35, 45};
+    create2(B, 5);
+
+    Display(second);
+
+    // printf("Concatanated List is : ");
+    // concat(first, second);
+
+    // Display(third);
+
+    printf("Merged List is : ");
+    Merge(first, second);
+    Display(third);
+
+    return 0;
+}
